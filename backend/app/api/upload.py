@@ -20,6 +20,16 @@ async def upload_images(
 
     uploaded_count = 0
     for file in files:
+        if not file.content_type or not file.content_type.startswith("image/"):
+            logger.info(
+                "file_skipped_non_image",
+                extra={
+                    "filename": file.filename,
+                    "content_type": file.content_type,
+                },
+            )
+            continue
+
         saved_path = await save_upload_file(file, images_dir)
         if saved_path:
             uploaded_count += 1
@@ -30,4 +40,5 @@ async def upload_images(
     )
 
     return UploadResponse(uploaded=uploaded_count)
+
 

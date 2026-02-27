@@ -310,7 +310,7 @@ export function Inference() {
                   const scaledH = h * scale;
 
                   const isSelected = selectedIndex === index;
-                  const isSevere = det.confidence >= 0.9;
+                  const isSevere = det.class === 'scratch' || det.confidence >= 0.9;
                   const color = isSevere ? '#e53935' : '#1f7aec';
 
                   const labelText = `${det.class} · ${(det.confidence * 100).toFixed(
@@ -372,7 +372,7 @@ export function Inference() {
             <div className="flex-1 overflow-auto px-2 py-2">
               {response?.detections.map((det, index) => {
                 const isSelected = selectedIndex === index;
-                const isSevere = det.confidence >= 0.9;
+                const isSevere = det.class === 'scratch' || det.confidence >= 0.9;
                 const color = isSevere ? 'text-accent-red' : 'text-accent-blue';
                 return (
                   <button

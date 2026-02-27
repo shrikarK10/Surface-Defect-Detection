@@ -6,7 +6,7 @@ from pydantic import BaseModel, Field, ConfigDict
 class Detection(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
-    class_: str = Field(alias="class")
+    class_: str = Field(alias="class", serialization_alias="class")
     confidence: float
     bbox: List[float]
 

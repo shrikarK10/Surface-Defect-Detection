@@ -7,7 +7,7 @@ import {
   type ChangeEvent,
   type DragEvent,
 } from 'react';
-import { Stage, Layer, Rect, Text, Image as KonvaImage } from 'react-konva';
+import { Stage, Layer, Rect, Text, Image as KonvaImage, Group } from 'react-konva';
 import { PageSection } from '../components/PageSection';
 
 const API_BASE_URL = 'http://localhost:8000';
@@ -317,8 +317,6 @@ export function Inference() {
                     1,
                   )}%`;
                   const labelPaddingX = 6;
-                  const labelPaddingY = 2;
-
                   return (
                     <Group
                       key={`${det.class}-${index}`}
